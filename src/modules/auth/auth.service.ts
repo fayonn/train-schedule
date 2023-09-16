@@ -37,8 +37,7 @@ export class AuthService {
       password: await this.hashService.hash(credentials.password)
     };
 
-    const savedAdmin = await this.adminService.save(newAdmin);
-    return this.getJWT(savedAdmin);
+    return await this.adminService.save(newAdmin);
   }
 
   async validateAdmin(email: string, password: string) {
@@ -90,7 +89,7 @@ export class AuthService {
 
   async signIn(credentials: Credentials) {
     const admin = await this.validateAdmin(credentials.email, credentials.password);
-    return this.getJWT(admin);
+    return await this.getJWT(admin);
   }
 
   async saveRefreshToken(admin: Partial<RefreshToken>) {
