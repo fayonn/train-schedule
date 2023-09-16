@@ -6,13 +6,22 @@ import { AdminModule } from './modules/admin/admin.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { dataSourceOptions } from "./configs/db.config";
+import { HashModule } from './modules/hash/hash.module';
+import { ConfigModule } from "@nestjs/config";
+import { TokenModule } from './modules/token/token.module';
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: `.env.${process.env.ENV}`,
+    }),
     TypeOrmModule.forRoot(dataSourceOptions),
     TrainModule,
     AdminModule,
-    AuthModule
+    AuthModule,
+    HashModule,
+    TokenModule
   ],
   controllers: [AppController],
   providers: [AppService],
