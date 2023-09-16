@@ -13,6 +13,10 @@ export class RefreshToken extends Base {
   @Column()
   expirationDate: Date
 
-  @ManyToOne(() => Admin, (admin) => admin.refreshTokens)
+  @ManyToOne(
+    () => Admin,
+    (admin) => admin.refreshTokens,
+    {onDelete: "CASCADE"}
+  )
   admin: Admin
 }

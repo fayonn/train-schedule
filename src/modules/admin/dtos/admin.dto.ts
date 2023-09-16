@@ -1,5 +1,5 @@
 import { Expose } from "class-transformer";
-import { IsString } from "class-validator";
+import { IsDate, IsDateString, IsString } from "class-validator";
 
 export class AdminDto {
   @Expose()
@@ -12,4 +12,12 @@ export class AdminDto {
 
   @IsString()
   password: string
+
+  @Expose()
+  @IsDateString()
+  createdAt: Date
+
+  @Expose()
+  @IsDateString()
+  updatedAt: Date
 }

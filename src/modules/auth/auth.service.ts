@@ -2,7 +2,7 @@ import {
   BadRequestException,
   ConflictException,
   Injectable,
-  InternalServerErrorException,
+  InternalServerErrorException, NotFoundException,
   UnauthorizedException
 } from "@nestjs/common";
 import { AdminService } from "../admin/admin.service";
@@ -137,7 +137,7 @@ export class AuthService {
     const admin = await this.adminService.findByIdOrThrowError(
       adminId,
       () => {
-        throw new BadRequestException(`Admin not found`);
+        throw new NotFoundException(`Admin not found`);
       }
     );
 

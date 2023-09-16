@@ -7,12 +7,16 @@ export class Admin extends Base {
   @PrimaryGeneratedColumn('uuid')
   id: string
 
-  @Column({unique: true})
+  @Column({unique: true, nullable: false})
   email: string
 
-  @Column()
+  @Column({nullable: false})
   password: string
 
-  @OneToMany(() => RefreshToken, (refreshToken) => refreshToken.admin)
+  @OneToMany(
+    () => RefreshToken,
+    (refreshToken) => refreshToken.admin,
+    {cascade: true}
+  )
   refreshTokens: RefreshToken[]
 }
