@@ -3,7 +3,7 @@ import { config } from "dotenv";
 import { ConfigService } from "@nestjs/config";
 import * as process from "process";
 
-config({path: `${__dirname}/../../.env.${process.env.ENV}`});
+config({path: `${__dirname}/../../../.env.${process.env.ENV}`});
 const configService = new ConfigService();
 
 export const dataSourceOptions: DataSourceOptions = {
